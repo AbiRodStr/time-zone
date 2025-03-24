@@ -10,12 +10,25 @@
   </head>
   <body>
     <h1>Time Zone</h1>
-    <select name="city" id="time-zone">
+    <select id="time-zone">
       <option value="">Select a City</option>
-      <option value="paris">Paris 🥖</option>
-      <option value="sydney">Sydney 🐨</option>
-      <option value="tokyo">Tokyo 🍣</option>
+      <option value="Europe/Paris">Paris 🥖</option>
+      <option value="Australia/Sydney">Sydney 🐨</option>
+      <option value="Asia/Tokyo">Tokyo 🍣</option>
     </select>
-    <script src="src/index.js"></script>
+
+    <script>
+      function showTimezone(event) {
+        if (event.target.value.length > 0) {
+          let currentTime = moment()
+            .tz(event.target.value)
+            .format("dddd MMMM D, YYYY hh:mm A");
+          alert(`It is currently ${currentTime} in ${event.target.value}`);
+        }
+      }
+
+      let citySelect = document.querySelector("#time-zone");
+      citySelect.addEventListener("change", showTimezone);
+    </script>
   </body>
 </html>
